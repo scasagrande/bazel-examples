@@ -1,0 +1,98 @@
+load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_filegroup")
+load("@container_structure_test//:defs.bzl", "container_structure_test")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_load", "oci_push")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_test")
+
+platform(
+    name = "linux_x86_64",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+)
+
+platform(
+    name = "linux_arm64",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:arm64",
+    ],
+)
+
+rust_test(
+    name = "test",
+    srcs = glob(["tests/*.rs"]),
+    crate_features = [
+        "fips",
+    ],
+    crate_root = "tests/it.rs",
+    tags = ["manual"],
+    deps = [
+        "//third_party/crates:openssl",
+        "//third_party/crates:rcgen",
+        "//third_party/crates:rstest",
+        "//third_party/crates:rustls",
+        "//third_party/crates:rustls-openssl",
+        "//third_party/crates:rustls-webpki",
+        "//third_party/crates:webpki-roots",
+    ],
+)
+
+pkg_tar(
+    name = "_test_tar",
+    testonly = True,
+    srcs = [":test"],
+    package_dir = "/",
+)
+
+genrule(
+    name = "entrypoint",
+    srcs = [],
+    outs = ["entrypoint.txt"],
+    cmd = "echo '/test' > $(OUTS)",
+)
+
+oci_image(
+    name = "_image",
+    testonly = True,
+    base = "@ubi_minimal",
+    entrypoint = ":entrypoint",
+    tags = [
+        "manual",
+    ],
+    target_compatible_with = ["@platforms//os:linux"],
+    tars = [
+        ":_test_tar",
+    ],
+)
+
+platform_transition_filegroup(
+    name = "image",
+    testonly = True,
+    srcs = [":_image"],
+    tags = [
+        "manual",
+    ],
+    target_platform = select({
+        "@platforms//cpu:arm64": ":linux_arm64",
+        "@platforms//cpu:x86_64": ":linux_x86_64",
+    }),
+    visibility = ["//visibility:public"],
+)
+
+oci_load(
+    name = "image.load",
+    testonly = True,
+    image = ":image",
+    repo_tags = ["fips-test-ubi:latest"],
+    tags = [
+        "manual",
+    ],
+)
+
+container_structure_test(
+    name = "structure_test",
+    configs = ["test.yaml"],
+    image = ":image",
+)
