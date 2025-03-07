@@ -12,6 +12,7 @@ use rustls::pki_types::pem::PemObject;
 use rustls::pki_types::PrivateKeyDer;
 use rustls::{CipherSuite, SignatureScheme, SupportedCipherSuite};
 use rustls_openssl::{custom_provider, default_provider};
+use std::{thread, time};
 use std::io::{Read, Write};
 use std::net::TcpStream;
 use std::sync::Arc;
@@ -26,6 +27,7 @@ fn test_with_provider(
 ) -> CipherSuite {
     #[cfg(feature = "fips")]
     {
+        thread::sleep(time::Duration::from_secs(2));
         rustls_openssl::fips::enable();
     }
 
@@ -208,6 +210,7 @@ fn test_to_internet(
 ) {
     #[cfg(feature = "fips")]
     {
+        thread::sleep(time::Duration::from_secs(2));
         rustls_openssl::fips::enable();
     }
 
@@ -288,6 +291,7 @@ static RSA_SIGNING_SCHEMES: &[SignatureScheme] = &[
 fn test_rsa_sign_and_verify() {
     #[cfg(feature = "fips")]
     {
+        thread::sleep(time::Duration::from_secs(2));
         rustls_openssl::fips::enable();
     }
     let ours = rustls_openssl::default_provider();
@@ -327,6 +331,7 @@ fn test_rsa_sign_and_verify() {
 fn test_ec_sign_and_verify(#[case] scheme: SignatureScheme, #[case] curve: Nid) {
     #[cfg(feature = "fips")]
     {
+        thread::sleep(time::Duration::from_secs(2));
         rustls_openssl::fips::enable();
     }
     let ours = rustls_openssl::default_provider();
@@ -430,6 +435,7 @@ fn sign_and_verify(
 #[cfg(feature = "fips")]
 #[test]
 fn provider_is_fips() {
+    thread::sleep(time::Duration::from_secs(2));
     rustls_openssl::fips::enable();
     let provider = rustls_openssl::default_provider();
     assert!(provider.fips());

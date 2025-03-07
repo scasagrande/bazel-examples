@@ -25,7 +25,7 @@ This example should work on Linux and macOS hosts.
 
 The image will be automatically cross-compiled for Linux, targeting your system's native architecture.
 
-I noticed that sometimes the test will fail if it is run too-soon after initial creation. If this happens, just wait a few seconds and run it again.
+Small sleeps have been added in the tests before enabling FIPS mode. This helps to prevent a failure condition where we load the image and enable FIPS mode too quickly, resulting in failures. I presume that this is due to mitigations due to potential attacks with the system not yet having enough entropy.
 
 ```shell
 bazel test //:structure_test

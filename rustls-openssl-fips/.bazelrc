@@ -1,0 +1,4 @@
+build --verbose_failures
+build --incompatible_strict_action_env=true
+
+test --test_output=errors
