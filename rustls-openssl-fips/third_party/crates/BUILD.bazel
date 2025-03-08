@@ -56,14 +56,14 @@ alias(
 )
 
 alias(
-    name = "rstest-0.23.0",
-    actual = "@crates__rstest-0.23.0//:rstest",
+    name = "rstest-0.25.0",
+    actual = "@crates__rstest-0.25.0//:rstest",
     tags = ["manual"],
 )
 
 alias(
     name = "rstest",
-    actual = "@crates__rstest-0.23.0//:rstest",
+    actual = "@crates__rstest-0.25.0//:rstest",
     tags = ["manual"],
 )
 

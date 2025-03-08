@@ -48,7 +48,7 @@ rust_proc_macro(
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    version = "0.23.0",
+    version = "0.25.0",
     deps = [
         "@crates__cfg-if-1.0.0//:cfg_if",
         "@crates__glob-0.3.2//:glob",
@@ -56,7 +56,7 @@ rust_proc_macro(
         "@crates__quote-1.0.38//:quote",
         "@crates__regex-1.11.1//:regex",
         "@crates__relative-path-1.9.3//:relative_path",
-        "@crates__rstest_macros-0.23.0//:build_script_build",
+        "@crates__rstest_macros-0.25.0//:build_script_build",
         "@crates__syn-2.0.98//:syn",
         "@crates__unicode-ident-1.0.17//:unicode_ident",
     ],
@@ -107,7 +107,7 @@ cargo_build_script(
         "noclippy",
         "norustfmt",
     ],
-    version = "0.23.0",
+    version = "0.25.0",
     visibility = ["//visibility:private"],
     deps = [
         "@crates__rustc_version-0.4.1//:rustc_version",
