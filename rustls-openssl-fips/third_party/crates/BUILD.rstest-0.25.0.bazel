@@ -31,7 +31,7 @@ rust_library(
     crate_root = "src/lib.rs",
     edition = "2021",
     proc_macro_deps = [
-        "@crates__rstest_macros-0.23.0//:rstest_macros",
+        "@crates__rstest_macros-0.25.0//:rstest_macros",
     ],
     rustc_flags = [
         "--cap-lints=allow",
@@ -50,5 +50,5 @@ rust_library(
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    version = "0.23.0",
+    version = "0.25.0",
 )

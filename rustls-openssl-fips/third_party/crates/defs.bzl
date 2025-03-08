@@ -297,7 +297,7 @@ _NORMAL_DEPENDENCIES = {
         _COMMON_CONDITION: {
             "openssl": Label("@crates__openssl-0.10.71//:openssl"),
             "rcgen": Label("@crates__rcgen-0.13.2//:rcgen"),
-            "rstest": Label("@crates__rstest-0.23.0//:rstest"),
+            "rstest": Label("@crates__rstest-0.25.0//:rstest"),
             "rustls": Label("@crates__rustls-0.23.23//:rustls"),
             "rustls-openssl": Label("@crates__rustls-openssl-0.2.0//:rustls_openssl"),
             "rustls-pki-types": Label("@crates__rustls-pki-types-1.11.0//:rustls_pki_types"),
@@ -685,22 +685,22 @@ def crate_repositories():
 
     maybe(
         http_archive,
-        name = "crates__rstest-0.23.0",
-        sha256 = "0a2c585be59b6b5dd66a9d2084aa1d8bd52fbdb806eafdeffb52791147862035",
+        name = "crates__rstest-0.25.0",
+        sha256 = "6fc39292f8613e913f7df8fa892b8944ceb47c247b78e1b1ae2f09e019be789d",
         type = "tar.gz",
-        urls = ["https://static.crates.io/crates/rstest/0.23.0/download"],
-        strip_prefix = "rstest-0.23.0",
-        build_file = Label("//third_party/crates:BUILD.rstest-0.23.0.bazel"),
+        urls = ["https://static.crates.io/crates/rstest/0.25.0/download"],
+        strip_prefix = "rstest-0.25.0",
+        build_file = Label("//third_party/crates:BUILD.rstest-0.25.0.bazel"),
     )
 
     maybe(
         http_archive,
-        name = "crates__rstest_macros-0.23.0",
-        sha256 = "825ea780781b15345a146be27eaefb05085e337e869bff01b4306a4fd4a9ad5a",
+        name = "crates__rstest_macros-0.25.0",
+        sha256 = "1f168d99749d307be9de54d23fd226628d99768225ef08f6ffb52e0182a27746",
         type = "tar.gz",
-        urls = ["https://static.crates.io/crates/rstest_macros/0.23.0/download"],
-        strip_prefix = "rstest_macros-0.23.0",
-        build_file = Label("//third_party/crates:BUILD.rstest_macros-0.23.0.bazel"),
+        urls = ["https://static.crates.io/crates/rstest_macros/0.25.0/download"],
+        strip_prefix = "rstest_macros-0.25.0",
+        build_file = Label("//third_party/crates:BUILD.rstest_macros-0.25.0.bazel"),
     )
 
     maybe(
@@ -1006,7 +1006,7 @@ def crate_repositories():
     return [
         struct(repo = "crates__openssl-0.10.71", is_dev_dep = False),
         struct(repo = "crates__rcgen-0.13.2", is_dev_dep = False),
-        struct(repo = "crates__rstest-0.23.0", is_dev_dep = False),
+        struct(repo = "crates__rstest-0.25.0", is_dev_dep = False),
         struct(repo = "crates__rustls-0.23.23", is_dev_dep = False),
         struct(repo = "crates__rustls-openssl-0.2.0", is_dev_dep = False),
         struct(repo = "crates__rustls-pki-types-1.11.0", is_dev_dep = False),
