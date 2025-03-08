@@ -1,0 +1,29 @@
+name: "CI"
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  all_ci_tests:
+    runs-on: ubuntu-22.04
+    needs:
+      - test-matrix
+    if: ${{ always() }}
+    steps:
+      - uses: cgrindel/gha_join_jobs@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+  test-matrix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+      - uses: cgrindel/gha_set_up_bazel@v1
+        with:
+          repo_name: bazel-examples
+      - name: Run test
+        run: bazelisk test ${{ matrix.test_target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - test_target: '@@//:rustls_openssl_fips'
