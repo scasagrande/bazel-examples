@@ -1,0 +1,20 @@
+load("@rules_rust//rust:defs.bzl", "rust_test_suite")
+
+rust_test_suite(
+    name = "integration",
+    srcs = glob(["tests/test_*.rs"]),
+    env = {"KAFKA_VERSION": "3.7"},
+    shared_srcs = ["tests/utils.rs"],
+    deps = [
+        "@crates//:async-std",
+        "@crates//:backon",
+        "@crates//:env_logger",
+        "@crates//:futures",
+        "@crates//:maplit",
+        "@crates//:rand",
+        "@crates//:rdkafka",
+        "@crates//:rdkafka-sys",
+        "@crates//:regex",
+        "@crates//:tokio",
+    ],
+)

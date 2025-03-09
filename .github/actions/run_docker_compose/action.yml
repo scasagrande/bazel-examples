@@ -1,0 +1,16 @@
+name: Run docker compose
+
+inputs:
+  compose_file:
+    description: Boolean value that specifies whether docker compose up should be run.
+    required: false
+    default: 'false'
+
+runs:
+  using: composite
+  steps:
+    - name: Run docker compose
+      if: inputs.compose_file != 'false'
+      uses: hoverkraft-tech/compose-action@v2.2.0
+      with:
+        compose-file: ${{ inputs.compose_file }}
