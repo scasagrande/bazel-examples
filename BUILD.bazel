@@ -1,4 +1,5 @@
 load("@bazel_binaries//:defs.bzl", "bazel_binaries")
+load("@cgrindel_bazel_starlib//bzllib:defs.bzl", "lists")
 load(
     "@rules_bazel_integration_test//bazel_integration_test:defs.bzl",
     "bazel_integration_test",
@@ -10,19 +11,37 @@ default_test_runner(
     name = "default_test_runner",
 )
 
-bazel_integration_test(
-    name = "rustls_openssl_fips",
-    bazel_version = bazel_binaries.versions.current,
-    test_runner = ":default_test_runner",
-    workspace_path = "rustls-openssl-fips",
-)
+EXAMPLES = [
+    "rustls-openssl-fips",
+    "rdkafka-sys",
+]
+
+#bazel_integration_test(
+#    name = "rdkafka_sys",
+#    bazel_version = bazel_binaries.versions.current,
+#    test_runner = ":default_test_runner",
+#    workspace_path = "rdkafka-sys",
+#)
+
+[
+    bazel_integration_test(
+        name = "{}-test".format(example),
+        bazel_version = bazel_binaries.versions.current,
+        test_runner = ":default_test_runner",
+        workspace_path = example,
+    )
+    for example in EXAMPLES
+]
 
 test_suite(
     name = "all_integration_tests",
     tags = integration_test_utils.DEFAULT_INTEGRATION_TEST_TAGS,
-    tests = integration_test_utils.bazel_integration_test_names(
-        "rustls_openssl_fips",
-        bazel_binaries.versions.all,
-    ),
+    tests = lists.flatten([
+        integration_test_utils.bazel_integration_test_names(
+            "{}-test".format(example),
+            bazel_binaries.versions.all,
+        )
+        for example in EXAMPLES
+    ]),
     visibility = ["//:__subpackages__"],
 )

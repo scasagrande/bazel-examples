@@ -20,10 +20,16 @@ jobs:
       - uses: cgrindel/gha_set_up_bazel@v1
         with:
           repo_name: bazel-examples
+      - uses: ./.github/actions/run_docker_compose
+        if: ${{ matrix.compose_file }}
+        with:
+          compose_file: ${{ matrix.compose_file }}
       - name: Run test
         run: bazelisk test ${{ matrix.test_target }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - test_target: '@@//:rustls_openssl_fips'
+          - test_target: '@@//:rustls-openssl-fips-test'
+          - test_target: '@@//:rdkafka-sys-test'
+            compose_file: './rdkafka-sys/compose.yaml'

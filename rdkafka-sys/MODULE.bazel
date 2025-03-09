@@ -1,0 +1,106 @@
+module(name = "rdkafka-sys-example")
+
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "lz4", version = "1.9.4")
+bazel_dep(name = "platforms", version = "0.0.11")
+bazel_dep(name = "rules_cc", version = "0.1.1")
+bazel_dep(name = "rules_rust", version = "0.58.0")
+bazel_dep(name = "zlib", version = "1.3.1.bcr.5")
+
+bazel_dep(name = "toolchains_llvm", version = "1.3.0", dev_dependency = True)
+
+## fetch pre-built copy of openssl
+
+bazel_dep(name = "openssl")
+archive_override(
+    module_name = "openssl",
+    integrity = "sha256-WJuG6a3TkGs8wj8EtXQrwirAelxqTkGh7Euf2Ylvt8w=",
+    strip_prefix = "openssl-prebuilt-openssl-prebuilt-1.1.1w",
+    urls = ["https://github.com/scasagrande/openssl-prebuilt/archive/refs/tags/openssl-prebuilt-1.1.1w.tar.gz"],
+)
+
+## rust
+
+rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
+rust.toolchain(
+    edition = "2021",
+    versions = ["1.85.0"],
+)
+use_repo(rust, "rust_toolchains")
+
+register_toolchains("@rust_toolchains//:all")
+
+crate = use_extension("@rules_rust//crate_universe:extension.bzl", "crate")
+crate.from_cargo(
+    name = "crates",
+    cargo_lockfile = "//third_party:Cargo.lock",
+    manifests = ["//third_party:Cargo.toml"],
+    supported_platform_triples = [
+        "aarch64-apple-darwin",
+        "aarch64-unknown-linux-gnu",
+        "x86_64-apple-darwin",
+        "x86_64-unknown-linux-gnu",
+    ],
+)
+crate.annotation(
+    crate = "rdkafka-sys",
+    gen_build_script = "off",
+    deps = ["@librdkafka"],
+)
+crate.annotation(
+    crate = "libz-sys",
+    gen_build_script = "off",
+    deps = ["@zlib"],
+)
+use_repo(crate, "crates")
+
+inject_repo(crate, "librdkafka")
+
+inject_repo(crate, "openssl")
+
+inject_repo(crate, "zlib")
+
+## cc
+
+llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm", dev_dependency = True)
+llvm.toolchain(
+    llvm_version = "18.1.8",
+    sha256 = {
+        "darwin-aarch64": "d28437d58615ccae434c289bcf5e0d10f031c732d7b60a5090541dbbbd381a01",
+        "darwin-x86_64": "f0c103bc2a19ffee7b55df2798188f085756e5668adc7c18d05c7f6705871828",
+        "linux-aarch64": "e9695cb9a8d068236b1c902af877be396eb0110d87525db49c68911b571f6976",
+        "linux-x86_64": "4d0bbec4acd23006d1353d0cd255144df8c910981f5474f3030bfde3dc75ccfa",
+    },
+    stdlib = {
+        "linux-x86_64": "stdc++",
+        "linux-aarch64": "stdc++",
+    },
+    urls = {
+        "darwin-aarch64": ["https://github.com/MaterializeInc/toolchains/releases/download/clang-18.1.8-5/darwin_aarch64.tar.zst"],
+        "darwin-x86_64": ["https://github.com/MaterializeInc/toolchains/releases/download/clang-18.1.8-5/darwin_x86_64.tar.zst"],
+        "linux-aarch64": ["https://github.com/MaterializeInc/toolchains/releases/download/clang-18.1.8-5/linux_aarch64.tar.zst"],
+        "linux-x86_64": ["https://github.com/MaterializeInc/toolchains/releases/download/clang-18.1.8-5/linux_x86_64.tar.zst"],
+    },
+)
+use_repo(llvm, llvm_toolchain_llvm = "llvm_toolchain")
+
+register_toolchains(
+    "@llvm_toolchain_llvm//:all",
+    dev_dependency = True,
+)
+
+## librdkafka
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "librdkafka",
+    build_file = "//:BUILD.rdkafka.bazel",
+    patch_args = ["-p1"],
+    patches = [
+        "//:librdkafka-0001-Remove-upward-folder-traversal.patch",
+    ],
+    sha256 = "2d49c35c77eeb3d42fa61c43757fcbb6a206daa560247154e60642bcdcc14d12",
+    strip_prefix = "librdkafka-2.3.0",
+    url = "https://github.com/confluentinc/librdkafka/archive/refs/tags/v2.3.0.tar.gz",
+)
