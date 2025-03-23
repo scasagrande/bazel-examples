@@ -299,7 +299,7 @@ _NORMAL_DEPENDENCIES = {
             "rcgen": Label("@crates__rcgen-0.13.2//:rcgen"),
             "rstest": Label("@crates__rstest-0.25.0//:rstest"),
             "rustls": Label("@crates__rustls-0.23.25//:rustls"),
-            "rustls-openssl": Label("@crates__rustls-openssl-0.2.0//:rustls_openssl"),
+            "rustls-openssl": Label("@crates__rustls-openssl-0.2.1//:rustls_openssl"),
             "rustls-pki-types": Label("@crates__rustls-pki-types-1.11.0//:rustls_pki_types"),
             "rustls-webpki": Label("@crates__rustls-webpki-0.102.8//:rustls_webpki"),
             "webpki-roots": Label("@crates__webpki-roots-0.26.8//:webpki_roots"),
@@ -725,12 +725,12 @@ def crate_repositories():
 
     maybe(
         http_archive,
-        name = "crates__rustls-openssl-0.2.0",
-        sha256 = "ad6baac2596417ed1ac329842cc9ab22d90fbbc3c59612ecd74d783b1df26523",
+        name = "crates__rustls-openssl-0.2.1",
+        sha256 = "5aa58b5fa1750e963ffe57b7248a2b00953fa1f8687339e41e526cf2e6671aa5",
         type = "tar.gz",
-        urls = ["https://static.crates.io/crates/rustls-openssl/0.2.0/download"],
-        strip_prefix = "rustls-openssl-0.2.0",
-        build_file = Label("//third_party/crates:BUILD.rustls-openssl-0.2.0.bazel"),
+        urls = ["https://static.crates.io/crates/rustls-openssl/0.2.1/download"],
+        strip_prefix = "rustls-openssl-0.2.1",
+        build_file = Label("//third_party/crates:BUILD.rustls-openssl-0.2.1.bazel"),
     )
 
     maybe(
@@ -1018,7 +1018,7 @@ def crate_repositories():
         struct(repo = "crates__rcgen-0.13.2", is_dev_dep = False),
         struct(repo = "crates__rstest-0.25.0", is_dev_dep = False),
         struct(repo = "crates__rustls-0.23.25", is_dev_dep = False),
-        struct(repo = "crates__rustls-openssl-0.2.0", is_dev_dep = False),
+        struct(repo = "crates__rustls-openssl-0.2.1", is_dev_dep = False),
         struct(repo = "crates__rustls-pki-types-1.11.0", is_dev_dep = False),
         struct(repo = "crates__rustls-webpki-0.102.8", is_dev_dep = False),
         struct(repo = "crates__webpki-roots-0.26.8", is_dev_dep = False),
