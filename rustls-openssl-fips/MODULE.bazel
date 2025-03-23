@@ -72,7 +72,7 @@ use_repo(
     "crates__rustls-0.23.25",
     "crates__rustls-openssl-0.2.1",
     "crates__rustls-pki-types-1.11.0",
-    "crates__rustls-webpki-0.102.8",
+    "crates__rustls-webpki-0.103.0",
     "crates__webpki-roots-0.26.8",
 )
 
