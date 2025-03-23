@@ -68,14 +68,14 @@ alias(
 )
 
 alias(
-    name = "rustls-0.23.23",
-    actual = "@crates__rustls-0.23.23//:rustls",
+    name = "rustls-0.23.25",
+    actual = "@crates__rustls-0.23.25//:rustls",
     tags = ["manual"],
 )
 
 alias(
     name = "rustls",
-    actual = "@crates__rustls-0.23.23//:rustls",
+    actual = "@crates__rustls-0.23.25//:rustls",
     tags = ["manual"],
 )
 

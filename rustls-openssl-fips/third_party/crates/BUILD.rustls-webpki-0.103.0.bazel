@@ -37,6 +37,11 @@ rust_library(
             "WORKSPACE.bazel",
         ],
     ),
+    crate_features = [
+        "alloc",
+        "ring",
+        "std",
+    ],
     crate_root = "src/lib.rs",
     edition = "2021",
     rustc_env_files = [
@@ -59,8 +64,9 @@ rust_library(
         "@rules_rust//rust/platform:x86_64-unknown-linux-gnu": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    version = "0.102.8",
+    version = "0.103.0",
     deps = [
+        "@crates__ring-0.17.11//:ring",
         "@crates__rustls-pki-types-1.11.0//:rustls_pki_types",
         "@crates__untrusted-0.9.0//:untrusted",
     ],
