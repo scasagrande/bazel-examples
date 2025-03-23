@@ -104,14 +104,14 @@ alias(
 )
 
 alias(
-    name = "rustls-webpki-0.102.8",
-    actual = "@crates__rustls-webpki-0.102.8//:webpki",
+    name = "rustls-webpki-0.103.0",
+    actual = "@crates__rustls-webpki-0.103.0//:webpki",
     tags = ["manual"],
 )
 
 alias(
     name = "rustls-webpki",
-    actual = "@crates__rustls-webpki-0.102.8//:webpki",
+    actual = "@crates__rustls-webpki-0.103.0//:webpki",
     tags = ["manual"],
 )
 

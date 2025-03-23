@@ -301,7 +301,7 @@ _NORMAL_DEPENDENCIES = {
             "rustls": Label("@crates__rustls-0.23.25//:rustls"),
             "rustls-openssl": Label("@crates__rustls-openssl-0.2.1//:rustls_openssl"),
             "rustls-pki-types": Label("@crates__rustls-pki-types-1.11.0//:rustls_pki_types"),
-            "rustls-webpki": Label("@crates__rustls-webpki-0.102.8//:rustls_webpki"),
+            "rustls-webpki": Label("@crates__rustls-webpki-0.103.0//:rustls_webpki"),
             "webpki-roots": Label("@crates__webpki-roots-0.26.8//:webpki_roots"),
         },
     },
@@ -745,16 +745,6 @@ def crate_repositories():
 
     maybe(
         http_archive,
-        name = "crates__rustls-webpki-0.102.8",
-        sha256 = "64ca1bc8749bd4cf37b5ce386cc146580777b4e8572c7b97baf22c83f444bee9",
-        type = "tar.gz",
-        urls = ["https://static.crates.io/crates/rustls-webpki/0.102.8/download"],
-        strip_prefix = "rustls-webpki-0.102.8",
-        build_file = Label("//third_party/crates:BUILD.rustls-webpki-0.102.8.bazel"),
-    )
-
-    maybe(
-        http_archive,
         name = "crates__rustls-webpki-0.103.0",
         sha256 = "0aa4eeac2588ffff23e9d7a7e9b3f971c5fb5b7ebc9452745e0c232c64f83b2f",
         type = "tar.gz",
@@ -1020,6 +1010,6 @@ def crate_repositories():
         struct(repo = "crates__rustls-0.23.25", is_dev_dep = False),
         struct(repo = "crates__rustls-openssl-0.2.1", is_dev_dep = False),
         struct(repo = "crates__rustls-pki-types-1.11.0", is_dev_dep = False),
-        struct(repo = "crates__rustls-webpki-0.102.8", is_dev_dep = False),
+        struct(repo = "crates__rustls-webpki-0.103.0", is_dev_dep = False),
         struct(repo = "crates__webpki-roots-0.26.8", is_dev_dep = False),
     ]
