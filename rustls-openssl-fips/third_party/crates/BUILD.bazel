@@ -80,14 +80,14 @@ alias(
 )
 
 alias(
-    name = "rustls-openssl-0.2.0",
-    actual = "@crates__rustls-openssl-0.2.0//:rustls_openssl",
+    name = "rustls-openssl-0.2.1",
+    actual = "@crates__rustls-openssl-0.2.1//:rustls_openssl",
     tags = ["manual"],
 )
 
 alias(
     name = "rustls-openssl",
-    actual = "@crates__rustls-openssl-0.2.0//:rustls_openssl",
+    actual = "@crates__rustls-openssl-0.2.1//:rustls_openssl",
     tags = ["manual"],
 )
 
