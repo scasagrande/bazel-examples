@@ -37,8 +37,6 @@ use_repo(oci, "ubi_minimal", "ubi_minimal_linux_amd64", "ubi_minimal_linux_arm64
 
 ## rust
 
-RUST_VERSION = "1.84.1"
-
 rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
 rust.toolchain(
     edition = "2021",
@@ -46,9 +44,6 @@ rust.toolchain(
         "aarch64-unknown-linux-gnu",
         "x86_64-unknown-linux-gnu",
     ],
-    rust_analyzer_version = RUST_VERSION,
-    rustfmt_version = RUST_VERSION,
-    versions = [RUST_VERSION],
 )
 use_repo(rust, "rust_toolchains")
 
