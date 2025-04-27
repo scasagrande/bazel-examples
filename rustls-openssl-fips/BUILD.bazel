@@ -29,13 +29,13 @@ rust_test(
     crate_root = "tests/it.rs",
     tags = ["manual"],
     deps = [
-        "//third_party/crates:openssl",
-        "//third_party/crates:rcgen",
-        "//third_party/crates:rstest",
-        "//third_party/crates:rustls",
-        "//third_party/crates:rustls-openssl",
-        "//third_party/crates:rustls-webpki",
-        "//third_party/crates:webpki-roots",
+        "@crates//:openssl",
+        "@crates//:rcgen",
+        "@crates//:rstest",
+        "@crates//:rustls",
+        "@crates//:rustls-openssl",
+        "@crates//:rustls-webpki",
+        "@crates//:webpki-roots",
     ],
 )
 

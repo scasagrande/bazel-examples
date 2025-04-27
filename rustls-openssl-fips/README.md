@@ -34,13 +34,3 @@ bazel test //:structure_test
 ## Warning!
 
 Please note that I am not a crypto/openssl/FIPS expert, and you should not rely on this example as proof of full compliance. You should do your own testing and auditing!
-
-## Note
-
-Developer note for updating rust dependencies:
-
-```shell
-bazel run //third_party:vendor_rust_deps
-bazel run //third_party:patch_deps -- $(bazel info workspace)/third_party/crates/defs.bzl
-bazel mod tidy
-```
