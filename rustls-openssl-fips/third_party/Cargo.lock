@@ -302,9 +302,9 @@ dependencies = [
 
 [[package]]
 name = "rustls-openssl"
-version = "0.2.1"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5aa58b5fa1750e963ffe57b7248a2b00953fa1f8687339e41e526cf2e6671aa5"
+checksum = "346f161084062dd5a443adfb0de9bbfab62699333e2d8424ca91da5f22ec88d1"
 dependencies = [
  "foreign-types",
  "once_cell",

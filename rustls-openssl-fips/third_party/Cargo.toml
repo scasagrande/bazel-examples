@@ -13,7 +13,7 @@ openssl = "0.10.68"
 rcgen = { version = "0.13.2", features = ["ring"] }
 rstest = {version = "0.25.0", default-features = false}
 rustls = { version = "0.23.23", default-features = false, features = ["std", "logging", "tls12", "ring"] }
-rustls-openssl = { version = "0.2.0" , features = ["fips"] }
+rustls-openssl = { version = "0.3.0" , features = ["fips"] }
 rustls-pki-types = "1.10.1"
 rustls-webpki = { version = "0.102.2", default-features = false }
 webpki-roots = "1.0"
