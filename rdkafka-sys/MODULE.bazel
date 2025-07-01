@@ -1,6 +1,6 @@
 module(name = "rdkafka-sys-example")
 
-bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "bazel_skylib", version = "1.8.0")
 bazel_dep(name = "lz4", version = "1.9.4")
 bazel_dep(name = "platforms", version = "1.0.0")
 bazel_dep(name = "rules_cc", version = "0.1.2")
