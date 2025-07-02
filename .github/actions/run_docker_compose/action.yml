@@ -11,6 +11,6 @@ runs:
   steps:
     - name: Run docker compose
       if: inputs.compose_file != 'false'
-      uses: hoverkraft-tech/compose-action@v2.2.0
+      uses: hoverkraft-tech/compose-action@v2.3.0
       with:
         compose-file: ${{ inputs.compose_file }}
