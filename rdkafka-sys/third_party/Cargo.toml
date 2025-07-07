@@ -12,14 +12,14 @@ path = "fake.rs"
 rdkafka = { version = "0.37.0", features = [], default-features = true }
 
 [dev-dependencies]
-async-std = { version = "1.13.0", features = ["attributes"] }
-backon = { version = "1.4", default-features = false, features = ["std-blocking-sleep"] }
-chrono = "0.4.40"
-clap = "4.5.31"
-env_logger = "0.11.6"
-futures = "0.3.31"
-maplit = "1.0.2"
-rand = "0.9.0"
-rdkafka-sys = "4.8.0+2.3.0"
-regex = "1.11.1"
-tokio = { version = "1.44", features = ["macros", "rt-multi-thread", "time"] }
+async-std = { version = "=1.13.0", features = ["attributes"] }
+backon = { version = "=1.5.1", default-features = false, features = ["std-blocking-sleep"] }
+chrono = "=0.4.40"
+clap = "=4.5.31"
+env_logger = "=0.11.6"
+futures = "=0.3.31"
+maplit = "=1.0.2"
+rand = "=0.9.0"
+rdkafka-sys = "=4.8.0+2.3.0"
+regex = "=1.11.1"
+tokio = { version = "=1.46.1", features = ["macros", "rt-multi-thread", "time"] }
