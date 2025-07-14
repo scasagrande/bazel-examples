@@ -12,7 +12,7 @@ path = "fake.rs"
 rdkafka = { version = "0.37.0", features = [], default-features = true }
 
 [dev-dependencies]
-async-std = { version = "=1.13.0", features = ["attributes"] }
+async-std = { version = "=1.13.1", features = ["attributes"] }
 backon = { version = "=1.5.1", default-features = false, features = ["std-blocking-sleep"] }
 chrono = "=0.4.41"
 clap = "=4.5.31"
