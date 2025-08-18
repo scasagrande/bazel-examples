@@ -16,7 +16,7 @@ jobs:
   test-matrix:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@8edcb1bdb4e267140fa742c62e395cd74f332709
+      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
       - uses: cgrindel/gha_set_up_bazel@0a8ec4049a3169b12fae56345c90f483cff54945 # v1
         with:
           repo_name: bazel-examples
