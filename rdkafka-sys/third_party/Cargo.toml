@@ -20,6 +20,6 @@ env_logger = "=0.11.8"
 futures = "=0.3.31"
 maplit = "=1.0.2"
 rand = "=0.9.2"
-rdkafka-sys = "=4.8.0+2.3.0"
+rdkafka-sys = "=4.9.0"
 regex = "=1.12.2"
 tokio = { version = "=1.46.1", features = ["macros", "rt-multi-thread", "time"] }
