@@ -14,7 +14,7 @@ rdkafka = { version = "0.37.0", features = [], default-features = true }
 [dev-dependencies]
 async-std = { version = "=1.13.2", features = ["attributes"] }
 backon = { version = "=1.6.0", default-features = false, features = ["std-blocking-sleep"] }
-chrono = "=0.4.42"
+chrono = "=0.4.43"
 clap = "=4.5.53"
 env_logger = "=0.11.8"
 futures = "=0.3.31"
