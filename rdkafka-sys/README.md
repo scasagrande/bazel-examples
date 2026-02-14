@@ -34,5 +34,5 @@ bazel test //...
 
 ## References
 
-- [Brian Myers in the Bazel slack](https://bazelbuild.slack.com/team/U023FM87D42) for providing a template on how to build librdkafka with Bazel
+- [Brian Myers in the Bazel slack](https://bazelbuild.slack.com/team/U023FM87D42) for providing a template on how to build librdkafka with Bazel, although this has now been replaced with the bzlmod build version of librdkafka
 - [Federico Giraud](https://github.com/fede1024) for writing rust-rdkafka and providing tests

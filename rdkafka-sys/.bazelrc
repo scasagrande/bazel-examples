@@ -2,3 +2,6 @@ build --verbose_failures
 build --incompatible_strict_action_env=true
 
 test --test_output=errors
+
+build --per_file_copt=external/.*@-w,-Wno-all
+build --host_per_file_copt=external/.*@-w,-Wno-all
