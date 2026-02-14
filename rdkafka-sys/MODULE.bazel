@@ -1,11 +1,12 @@
 module(name = "rdkafka-sys-example")
 
-bazel_dep(name = "bazel_skylib", version = "1.8.2")
-bazel_dep(name = "lz4", version = "1.9.4.bcr.2")
+bazel_dep(name = "bazel_skylib", version = "1.9.0")
+bazel_dep(name = "lz4", version = "1.10.0.bcr.1")
 bazel_dep(name = "platforms", version = "1.0.0")
-bazel_dep(name = "rules_cc", version = "0.1.4")
-bazel_dep(name = "rules_rust", version = "0.62.0")
-bazel_dep(name = "zlib", version = "1.3.1.bcr.7")
+bazel_dep(name = "rules_cc", version = "0.2.16")
+bazel_dep(name = "rules_rust", version = "0.68.1")
+bazel_dep(name = "zlib", version = "1.3.1.bcr.8")
+bazel_dep(name = "librdkafka", version = "2.8.0.bcr.2")
 
 bazel_dep(name = "toolchains_llvm", version = "1.3.0", dev_dependency = True)
 
@@ -14,9 +15,9 @@ bazel_dep(name = "toolchains_llvm", version = "1.3.0", dev_dependency = True)
 bazel_dep(name = "openssl")
 archive_override(
     module_name = "openssl",
-    integrity = "sha256-WJuG6a3TkGs8wj8EtXQrwirAelxqTkGh7Euf2Ylvt8w=",
-    strip_prefix = "openssl-prebuilt-openssl-prebuilt-1.1.1w",
-    urls = ["https://github.com/scasagrande/openssl-prebuilt/archive/refs/tags/openssl-prebuilt-1.1.1w.tar.gz"],
+    integrity = "sha256-jpHkLBM47znYCYJ/xgQySyROXTNywR2bTElv/8VXpEQ=",
+    strip_prefix = "openssl-prebuilt-openssl-prebuilt-1.1.1w.bcr.2",
+    urls = ["https://github.com/scasagrande/openssl-prebuilt/archive/refs/tags/openssl-prebuilt-1.1.1w.bcr.2.tar.gz"],
 )
 
 ## rust
@@ -86,20 +87,4 @@ use_repo(llvm, llvm_toolchain_llvm = "llvm_toolchain")
 register_toolchains(
     "@llvm_toolchain_llvm//:all",
     dev_dependency = True,
-)
-
-## librdkafka
-
-http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "librdkafka",
-    build_file = "//:BUILD.rdkafka.bazel",
-    patch_args = ["-p1"],
-    patches = [
-        "//:librdkafka-0001-Remove-upward-folder-traversal.patch",
-    ],
-    sha256 = "2d49c35c77eeb3d42fa61c43757fcbb6a206daa560247154e60642bcdcc14d12",
-    strip_prefix = "librdkafka-2.3.0",
-    url = "https://github.com/confluentinc/librdkafka/archive/refs/tags/v2.3.0.tar.gz",
 )
