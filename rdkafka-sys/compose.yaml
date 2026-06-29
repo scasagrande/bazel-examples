@@ -1,6 +1,6 @@
 services:
   kafka:
-    image: confluentinc/cp-kafka:7.9.7@sha256:d879d4b81bccb61c9b11f2e69dfcbc4219ea474f6c0df48cc89e75efed82cecb
+    image: confluentinc/cp-kafka:7.9.8@sha256:b38b43301027c5a8990f778e478d2b7384d3fd62cc1aeff6768b89fbd898172a
     environment:
       - KAFKA_BROKER_ID=0
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
