@@ -15,6 +15,6 @@ services:
       - zookeeper
 
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.9.7@sha256:b692a1dafdccd09dd2a9e109a4da1e74835d82907099028a6aa691df002d9375
+    image: confluentinc/cp-zookeeper:7.9.8@sha256:48ca7843cdf2e9d35f96b86efd290e81fcedd595cd5d7df8fde3a6724c3c5869
     environment:
       - ZOOKEEPER_CLIENT_PORT=2181
