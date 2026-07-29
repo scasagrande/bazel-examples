@@ -26,7 +26,7 @@ archive_override(
 oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 oci.pull(
     name = "ubi_minimal",
-    digest = "sha256:7eedea3d199fd9b0e6a06cd1a22537c1b84fab65d6eec8a5049c12e68c57f692",
+    digest = "sha256:b915e698d01cf0750b82c6ab54adc794870381271670fd7211b082f19f8564f7",
     image = "registry.access.redhat.com/ubi8/ubi-minimal",
     platforms = [
         "linux/amd64",
