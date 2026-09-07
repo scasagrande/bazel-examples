@@ -9,7 +9,7 @@ publish = false
 path = "fake.rs"
 
 [dependencies]
-rdkafka = { version = "0.37.0", features = [], default-features = true }
+rdkafka = { version = "0.39.0", features = [], default-features = true }
 
 [dev-dependencies]
 async-std = { version = "=1.13.2", features = ["attributes"] }
